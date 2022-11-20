@@ -1,0 +1,23 @@
+.MsgHistory{
+    color: white;
+    width: 100%;
+}
+.YourMessages{
+    float: right;
+    border: solid;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 100%;
+    
+}
+.OthersMessages{
+    float :right;
+    box-sizing: border-box;
+    border: solid;
+    border-radius: 10px;
+    width: 100%
+   
+}
+.OthersMessages span  Link{
+    color: white
+}

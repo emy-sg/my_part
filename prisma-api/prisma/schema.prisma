@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Player {
+	id Int @id @default(autoincrement())
+	nickname String @unique
+	firstName String
+	lastName String
+	avatar String
+	email String
+
+	senders Friendship[] @relation("SendRequest")
+	receivers Friendship[] @relation("ReceiveRequest")
+	
+}
+
+# https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/working-with-many-to-many-relations
+# https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations#relational-databases
+
+model Friendship {
+	status String
+	date DateTime @default(now())
+
+	sender Player @relation(fields: [senderId], references: [id])
+	senderId Int
+	receiver Player @relation(fields: [receiverId], references: [id])
+	receiverId Int
+
+	@@id([senderId, receiverId])
+}
