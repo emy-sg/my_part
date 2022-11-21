@@ -16,24 +16,23 @@ model Player {
 	firstName String
 	lastName String
 	avatar String
-	email String
-
+	email String @unique
+	wins Int @default(0)
+	loses Int @default(0)
 	senders Friendship[] @relation("SendRequest")
 	receivers Friendship[] @relation("ReceiveRequest")
 	
 }
 
-# https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/working-with-many-to-many-relations
-# https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations#relational-databases
+// https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/working-with-many-to-many-relations
+// https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations#relational-databases
 
 model Friendship {
 	status String
 	date DateTime @default(now())
-
-	sender Player @relation(fields: [senderId], references: [id])
+	sender Player @relation("SendRequest", fields: [senderId], references: [id])
 	senderId Int
-	receiver Player @relation(fields: [receiverId], references: [id])
+	receiver Player @relation("ReceiveRequest", fields: [receiverId], references: [id])
 	receiverId Int
-
 	@@id([senderId, receiverId])
 }

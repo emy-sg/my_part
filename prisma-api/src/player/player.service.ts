@@ -16,24 +16,24 @@ export class PlayerService {
         return player;
     }
 
-    async createFriendship(data: any, friendname: string) {
+    // async createFriendship(data: any, friendname: string) {
 
-        const Sender = await this.findPlayer(data);
-        const Receiver = await this.prisma.player.findUnique({
-            where: { nickname: friendname}
-        });
+    //     const Sender = await this.findPlayer(data);
+    //     const Receiver = await this.prisma.player.findUnique({
+    //         where: { nickname: friendname}
+    //     });
 
-        const friends = await this.prisma.friendship.create({
-            data: {
-              title: 'Types of relations',
-              tags: {
-                create: [
-                  { tag: { create: { name: 'dev' } } },
-                  { tag: { create: { name: 'prisma' } } },
-                ],
-              },
-            },
-          })
-    }
+    //     const friends = await this.prisma.friendship.create({
+    //         data: {
+    //           title: 'Types of relations',
+    //           tags: {
+    //             create: [
+    //               { tag: { create: { name: 'dev' } } },
+    //               { tag: { create: { name: 'prisma' } } },
+    //             ],
+    //           },
+    //         },
+    //       })
+    // }
 }
 
