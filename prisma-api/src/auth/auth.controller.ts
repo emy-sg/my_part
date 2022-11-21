@@ -66,7 +66,7 @@ export class AuthController {
 		response.cookie(process.env.AUTHCOOKIE, secretData, {httpOnly:true,});
 		// response.status(200).send(user);
 		// response.redirect("http::localhost:5000/player/myprofile")
-		return response.status(302).redirect(`http://localhost:5000/player/myprofile`);
+		return response.status(302).redirect(`http://localhost:3000/`);
 
 		// return user;
 	}

@@ -13,8 +13,9 @@ export class PlayerController {
         console.log("MY PROFILE");
         const user =  await this.playerService.findPlayer(request.user);
 
-        response.status(200).send(user);
+        // response.status(200).send(user);
+        return user;
 
-		return user;
+		//return user;
     }
 }
