@@ -19,9 +19,13 @@ export class JwtStrategy extends PassportStrategy(Strategy,'jwt') {
         });
     }
  
-// https://docs.nestjs.com/exception-filters
-//https://medium.com/@abeythilakeudara3/nestjs-exception-filters-part-02-24afcbe116cf
-// https://progressivecoder.com/nestjs-exception-handling-learn-nestjs-series-part-6/
+
+//  https://docs.nestjs.com/exception-filters
+//  https://medium.com/@abeythilakeudara3/nestjs-exception-filters-part-02-24afcbe116cf
+//  https://progressivecoder.com/nestjs-exception-handling-learn-nestjs-series-part-6/
+//  https://www.youtube.com/watch?v=jOCvdC9BBqY&ab_channel=AmitavRoy
+
+//   throw new HttpException(msg, code) ==> import { HttpException, HttpStatus } from "@nestjs/common"
 
     async validate(payload:any){
         // You have to use HTTPExcepiton
