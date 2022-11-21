@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { Request } from "express";
 import { ExtractJwt, Strategy } from "passport-jwt";
@@ -19,11 +19,15 @@ export class JwtStrategy extends PassportStrategy(Strategy,'jwt') {
         });
     }
  
+// https://docs.nestjs.com/exception-filters
+//https://medium.com/@abeythilakeudara3/nestjs-exception-filters-part-02-24afcbe116cf
+// https://progressivecoder.com/nestjs-exception-handling-learn-nestjs-series-part-6/
+
     async validate(payload:any){
         // You have to use HTTPExcepiton
-        // if(payload === null){
-        //     throw new UnauthorizedException();
-        // }
+        if(payload === null){
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
         return payload;
     }
 }
